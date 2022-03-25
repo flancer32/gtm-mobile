@@ -1,0 +1,22 @@
+{
+  "@flancer32/gtm-desk": {
+    "db": {
+      "client": "mysql",
+      "connection": {
+        "database": "gtm",
+        "host": "127.0.0.1",
+        "password": "...",
+        "user": "..."
+      }
+    }
+  },
+  "@teqfw/core": {
+    "devMode": false
+  },
+  "@teqfw/web": {
+    "server": {
+      "port": 9999
+    },
+    "urlBase": "gtm.domain.com"
+  }
+}

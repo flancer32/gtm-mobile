@@ -1,0 +1,14 @@
+{
+  "@teqfw/core": {
+    "plugin": {
+      "onInit": "Gtm_Mob_Back_Plugin_Init",
+      "onStop": "Gtm_Mob_Back_Plugin_Stop"
+    }
+  },
+  "@teqfw/di": {
+    "autoload": {
+      "ns": "Gtm_Mob",
+      "path": "./src"
+    }
+  }
+}

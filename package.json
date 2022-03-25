@@ -1,0 +1,36 @@
+{
+  "name": "@flancer32/gtm-mobile",
+  "version": "0.1.0",
+  "description": "Mobile PWA in GTM project.",
+  "homepage": "https://github.com/flancer32/gtm-mobile/",
+  "bugs": {
+    "url": "https://github.com/flancer32/gtm-mobile/issues",
+    "email": "alex@flancer32.com"
+  },
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Alex Gusev",
+    "email": "alex@flancer64.com",
+    "url": "https://github.com/flancer64"
+  },
+  "repository": "github:flancer32/gtm-mobile",
+  "scripts": {
+    "help": "node ./bin/tequila.mjs -h",
+    "rebuild": "rm -fr node_modules package-lock.json && npm install",
+    "start": "node ./bin/tequila.mjs web-server-start -1",
+    "stop": "node ./bin/tequila.mjs web-server-stop",
+    "version": "node ./bin/tequila.mjs core-version"
+  },
+  "dependencies": {
+    "@flancer32/gtm-base": "github:flancer32/gtm-base",
+    "@teqfw/core": "github:teqfw/core",
+    "@teqfw/db": "github:teqfw/db",
+    "@teqfw/di": "github:teqfw/di",
+    "@teqfw/i18n": "github:teqfw/i18n",
+    "@teqfw/test": "github:teqfw/test",
+    "@teqfw/ui-quasar": "github:teqfw/ui-quasar",
+    "@teqfw/vue": "github:teqfw/vue",
+    "@teqfw/web": "github:teqfw/web",
+    "mysql2": "*"
+  }
+}
