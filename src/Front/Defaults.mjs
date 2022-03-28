@@ -2,6 +2,9 @@
  * Plugin constants (hardcoded configuration) for frontend code.
  */
 export default class Gtm_Mob_Front_Defaults {
+
+    ROUTE_HOME = '/';
+
     /** @type {Gtm_Mob_Shared_Defaults} */
     SHARED;
 

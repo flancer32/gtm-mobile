@@ -1,0 +1,22 @@
+{
+  "background_color": "#2A180E",
+  "categories": ["task manager"],
+  "description": "Graveyard Task Manager: prototype for mobile app.",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./img/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "./img/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "name": "GTM",
+  "scope": "./",
+  "short_name": "GTM",
+  "start_url": "./",
+  "theme_color": "#2A180E"
+}

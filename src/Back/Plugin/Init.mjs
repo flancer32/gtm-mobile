@@ -14,6 +14,9 @@ export default function Factory(spec) {
     const logger = spec['TeqFw_Core_Shared_Api_ILogger$$']; // instance
 
     // FUNCS
+    async function init() {
+        // TODO: use it or remove it
+    }
 
     // MAIN
     logger.setNamespace(NS);

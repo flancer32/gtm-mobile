@@ -1,1 +1,54 @@
-GTM Mobile
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Graveyard Task Manager: prototype for mobile app.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GTM</title>
+    <link rel="manifest" href="./pwa.webmanifest">
+    <link rel="stylesheet" href="./styles_boot.css" type="text/css">
+
+    <script>
+        self.addEventListener('load', async () => {
+            // local printout DIV
+            const elLaunchpad = document.querySelector('.launchpad');
+            // see `node_modules/@teqfw/web/web/js/loader.mjs`
+            const mod = await import('./web/@teqfw/web/js/loader.mjs');
+            // create & init bootstrap object
+            /** @type {Bootstrap} */
+            const boot = new mod.Bootstrap();
+            boot.setCssMount('BODY > DIV');
+            boot.setNsApp('Gtm_Mob_Front_App');
+            // set printout to UI DIV & to console
+            boot.setFnPrintout((msg) => {
+                elLaunchpad.innerHTML = msg;
+                console.log(`[shell]: ${msg}`);
+            });
+            // run the application's bootstrap
+            await boot.run();
+        });
+    </script>
+</head>
+<body>
+<div>
+    <app-root>
+        <div class="launchpad">TeqFW App is loading...</div>
+    </app-root>
+</div>
+<!-- These scripts are not ready for loading with TeqFW DI. Use old style loading.  -->
+<script type="application/javascript" src="./src/vue/vue.global.prod.js"></script>
+<script type="application/javascript" src="./src/vue-router/vue-router.global.prod.js"></script>
+<script type="application/javascript" src="./src/i18n-bld/i18nextBrowserLanguageDetector.js"></script>
+<script type="application/javascript" src="./src/quasar/quasar.umd.prod.js"></script>
+<script type="application/javascript" src="./src/quasar/icon-set/svg-material-icons.umd.prod.js"></script>
+<!--<script type="application/javascript" src="./src/tweetnacl/nacl-fast.min.js"></script>-->
+<!--<script type="application/javascript" src="./src/tweetnacl-util/nacl-util.min.js"></script>-->
+<!--<script type="application/javascript" src="./src/qrious/qrious.js"></script>-->
+
+<!-- These styles are loaded after landing page is displayed -->
+<link rel="stylesheet" href="./web/@teqfw/ui-quasar/styles.css">
+<link rel="stylesheet" href="./src/quasar/quasar.prod.css">
+<link rel="stylesheet" href="./styles.css">
+
+</body>
+</html>
