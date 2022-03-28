@@ -3,6 +3,18 @@
     "ok": "OK"
   },
   "ui": {
+    "cfg": {
+      "app": {
+        "btn": {
+          "clean": "Clean Cache",
+          "uninstall": "Uninstall SW"
+        },
+        "cache": "Cache enabled",
+        "log": "Front Logs Monitoring",
+        "swCache": "Service Worker Cache",
+        "title": "Front Config"
+      }
+    },
     "home": {
       "title": "GTM Mobile"
     }

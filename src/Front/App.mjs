@@ -147,6 +147,10 @@ export default class Gtm_Mob_Front_App {
                 });
                 // setup application routes (load es6-module on demand with DI-container)
                 router.addRoute({
+                    path: DEF.ROUTE_CFG,
+                    component: () => container.get('Gtm_Mob_Front_Ui_Cfg_Route$'),
+                });
+                router.addRoute({
                     path: DEF.ROUTE_HOME,
                     component: () => container.get('Gtm_Mob_Front_Ui_Home_Route$'),
                 });
@@ -198,10 +202,9 @@ export default class Gtm_Mob_Front_App {
                 print(`Data sources are initialized.`);
                 initRouter(_root, DEF, container);
                 print(`Vue app is created and initialized.`);
-                // if (await modLogMonitor.get()) {
-                //     modLogTrn.enableLogs();
-                //     print(`Logs monitoring is enabled.`);
-                // }
+                modLogTrn.initFromLocalStorage();
+                if (modLogTrn.isLogsMonitorOn()) print(`Logs monitoring is enabled.`)
+                else print(`Logs monitoring is disabled.`);
                 _isInitialized = true;
             } catch (e) {
                 // TODO: place IDB cleanup here for re-installs

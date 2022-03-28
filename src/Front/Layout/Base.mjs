@@ -27,7 +27,7 @@ export default function Factory(spec) {
             <q-btn dense flat round icon="menu" to="${DEF.ROUTE_HOME}"/>
             <q-toolbar-title>{{ title }}</q-toolbar-title>
             <q-space></q-space>
-            <leds/>
+            <q-btn dense flat round icon="settings" to="${DEF.ROUTE_CFG}"/>
         </q-toolbar>
     </q-header>
     <q-page-container style="height: 100%">
@@ -36,9 +36,7 @@ export default function Factory(spec) {
         </div>
     </q-page-container>
 
-    <q-footer class="bg-primary text-white">
-<!--        <bottom-bar/>-->
-    </q-footer>
+    <q-footer class="bg-primary text-white"></q-footer>
 
 </q-layout>
 `;
