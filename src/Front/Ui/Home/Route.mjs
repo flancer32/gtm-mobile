@@ -15,11 +15,18 @@ const NS = 'Gtm_Mob_Front_Ui_Home_Route';
 export default function (spec) {
     /** @type {Gtm_Mob_Front_Defaults} */
     const DEF = spec['Gtm_Mob_Front_Defaults$'];
+    /** @type {Gtm_Mob_Front_Ui_Home_Dialog_Task_Add.vueCompTmpl} */
+    const uiDialogTaskView = spec['Gtm_Mob_Front_Ui_Home_Dialog_Task_Add$'];
+    /** @type {Gtm_Mob_Front_Widget_Home_Dialog_Task_Add} */
+    const wgDialogTaskView = spec['Gtm_Mob_Front_Widget_Home_Dialog_Task_Add$'];
 
     // WORKING VARS
     const template = `
 <layout-base>
-    <div>HOME</div>
+    <div class="q-ma-sm">
+        <q-btn dense color="primary" icon="add" v-on:click="addTask" />
+    </div>
+    <ui-dialog-task-view />
 </layout-base>
 `;
     /**
@@ -32,13 +39,18 @@ export default function (spec) {
         teq: {package: DEF.SHARED.NAME},
         name: NS,
         template,
-        components: {},
+        components: {uiDialogTaskView},
         data() {
             return {};
         },
-        methods: {},
+        methods: {
+            addTask() {
+                const wg = wgDialogTaskView.get();
+                wg.displayDialog();
+            },
+        },
         async mounted() {
-
+            this.addTask();
         }
     };
 }

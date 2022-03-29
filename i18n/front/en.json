@@ -1,6 +1,9 @@
 {
   "btn": {
-    "ok": "OK"
+    "claim": "Claim",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "save": "Save"
   },
   "ui": {
     "cfg": {
@@ -13,6 +16,16 @@
         "log": "Front Logs Monitoring",
         "swCache": "Service Worker Cache",
         "title": "Front Config"
+      }
+    },
+    "dialog": {
+      "add": {
+        "task": {
+          "due": "Task due date",
+          "graveyard": "Graveyard",
+          "title": "Task title"
+        },
+        "title": "Add new task"
       }
     },
     "home": {
