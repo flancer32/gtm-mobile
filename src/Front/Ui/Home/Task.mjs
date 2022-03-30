@@ -25,6 +25,10 @@ export default function (spec) {
     const idb = spec['Gtm_Mob_Front_IDb_Main$']; // get as singleton, type as interface
     /** @type {Gtm_Mob_Front_IDb_Store_Task} */
     const idbTask = spec['Gtm_Mob_Front_IDb_Store_Task$'];
+    /** @type {TeqFw_Web_Front_App_Connect_Event_Direct_Portal} */
+    const portalBack = spec['TeqFw_Web_Front_App_Connect_Event_Direct_Portal$'];
+    /** @type {Gtm_Mob_Shared_Event_Front_Task_Post_Request} */
+    const esfPost = spec['Gtm_Mob_Shared_Event_Front_Task_Post_Request$'];
     /** @type {typeof Gtm_Mob_Front_Enum_Task_Status} */
     const STATUS = spec['Gtm_Mob_Front_Enum_Task_Status$'];
 
@@ -45,8 +49,8 @@ export default function (spec) {
             />
         </div>
         <div class="col text-right">
-            <div class="">
-                <q-btn color="primary" icon="send" v-on:click="btnSend" />
+            <div v-if="btnPostEnabled">
+                <q-btn color="primary" icon="send" v-on:click="btnPost" />
             </div>
             <div class="q-mt-md">
                 <q-btn color="primary" icon="delete" v-on:click="btnDelete" />
@@ -77,10 +81,14 @@ export default function (spec) {
             item: null,
         },
         computed: {
+            btnPostEnabled() {
+                return (this?.item?.status === STATUS.NEW);
+            },
             classTitle() {
                 /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
                 const task = this.item;
-                const bg = (task.status === STATUS.NEW) ? 'bg-primary' : 'bg-secondary';
+                const bg = (task.status === STATUS.NEW) ? 'bg-primary' :
+                    (task.status === STATUS.POSTED) ? 'bg-secondary' : 'bg-info';
                 return `${bg} text-white`;
             }
         },
@@ -90,11 +98,22 @@ export default function (spec) {
                 dialog.setTask(this.item);
                 dialog.displayDialog();
             },
-            async btnSend() {
+            async btnPost() {
                 const trx = await idb.startTransaction(idbTask);
                 /** @type {Gtm_Mob_Front_IDb_Store_Task.Dto} */
                 const found = await idb.readOne(trx, idbTask, this?.item?.id);
                 if (found) {
+                    const event = esfPost.createDto();
+                    event.data.dateCreated = found.dateCreated;
+                    event.data.dateDue = found.dateDue;
+                    event.data.desc = found.desc;
+                    event.data.graveyardBid = found.graveyardBid;
+                    event.data.image = found.image;
+                    event.data.taskFid = found.id;
+                    event.data.title = found.title;
+                    event.data.uuid = found.uuid;
+                    // noinspection JSUnresolvedVariable
+                    portalBack.publish(event);
                     found.status = STATUS.SENT;
                     await idb.updateOne(trx, idbTask, found);
                     logger.info(`Task #${found.id} is sent to the back.`);

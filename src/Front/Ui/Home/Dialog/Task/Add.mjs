@@ -26,6 +26,8 @@ export default function (spec) {
     const DEF = spec['Gtm_Mob_Front_Defaults$'];
     /** @type {TeqFw_Core_Shared_Api_ILogger} */
     const logger = spec['TeqFw_Core_Shared_Api_ILogger$$']; // instance
+    /** @type {TeqFw_Web_Front_Lib_Uuid.v4|function} */
+    const uuidV4 = spec['TeqFw_Web_Front_Lib_Uuid.v4'];
     /** @type {Gtm_Mob_Front_Widget_Home} */
     const wgHome = spec['Gtm_Mob_Front_Widget_Home$'];
     /** @type {Gtm_Mob_Front_Widget_Home_Dialog_Task_Add} */
@@ -159,6 +161,7 @@ export default function (spec) {
                 dto.graveyardBid = this.fldGraveyard.value;
                 dto.status = STATUS.NEW;
                 dto.title = this.fldTitle;
+                dto.uuid = uuidV4();
                 const taskId = await idb.create(trx, idbTask, dto);
                 logger.info(`New task is added to IDB as #${taskId}.`);
                 trx.commit();

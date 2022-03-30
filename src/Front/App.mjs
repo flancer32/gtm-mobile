@@ -72,13 +72,11 @@ export default class Gtm_Mob_Front_App {
 
             /**
              * Create processes that start on events.
-             * TODO: this should be done using 'teqfw.json' descriptor
              * @param {TeqFw_Di_Shared_Container} container
              */
             async function initEventProcessors(container) {
-                // TODO: init from 'teqfw.json'
                 // Some processes (authentication) should be subscribed to events before Reverse Stream can be opened.
-                // await container.get('Gtm_Mob_Front_Hand_Admin_Command$');
+                await container.get('Gtm_Mob_Front_Hand_Task_Post_Report$');
             }
 
             /**

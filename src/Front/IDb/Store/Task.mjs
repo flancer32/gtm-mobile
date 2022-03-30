@@ -81,6 +81,11 @@ class Dto {
      * @type {string}
      */
     title;
+    /**
+     * UUID for this task (generated on the front).
+     * @type {string}
+     */
+    uuid;
 }
 
 /**

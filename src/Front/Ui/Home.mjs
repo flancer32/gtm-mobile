@@ -9,7 +9,7 @@ const NS = 'Gtm_Mob_Front_Ui_Home';
 // MODULE'S INTERFACES
 /**
  * @interface
- * @memberOf Gtm_Mob_Front_Ui_Home_Dialog_Task_Add
+ * @memberOf Gtm_Mob_Front_Ui_Home
  */
 class IUiComp {
     addTask() {}
@@ -37,7 +37,7 @@ export default function (spec) {
     /** @type {Gtm_Mob_Front_Widget_Home_Dialog_Task_Add} */
     const wgDialogTaskAdd = spec['Gtm_Mob_Front_Widget_Home_Dialog_Task_Add$'];
     /** @type {TeqFw_Web_Front_App_Store_IDB} */
-    const idb = spec['Gtm_Mob_Front_IDb_Main$']; // get as singleton with interface
+    const idb = spec['Gtm_Mob_Front_IDb_Main$']; // get as singleton, type as interface
     /** @type {Gtm_Mob_Front_IDb_Store_Task} */
     const idbTask = spec['Gtm_Mob_Front_IDb_Store_Task$'];
     /** @type {Gtm_Mob_Front_IDb_Store_Graveyard} */
