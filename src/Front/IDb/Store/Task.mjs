@@ -23,6 +23,7 @@ const ATTR = {
     GRAVEYARD_BID: 'graveyardBid',
     ID: 'id',
     IMAGE: 'image',
+    STATUS: 'status',
     TITLE: 'title',
 };
 
@@ -73,6 +74,8 @@ class Dto {
      * @type {string}
      */
     image;
+    /** @type {Gtm_Mob_Front_Enum_Task_Status} */
+    status;
     /**
      * Task title.
      * @type {string}
@@ -87,10 +90,14 @@ export default class Gtm_Mob_Front_IDb_Store_Task {
     constructor(spec) {
         /** @type {TeqFw_Core_Shared_Util_Cast.castDate|function} */
         const castDate = spec['TeqFw_Core_Shared_Util_Cast.castDate'];
+        /** @type {TeqFw_Core_Shared_Util_Cast.castEnum|function} */
+        const castEnum = spec['TeqFw_Core_Shared_Util_Cast.castEnum'];
         /** @type {TeqFw_Core_Shared_Util_Cast.castInt|function} */
         const castInt = spec['TeqFw_Core_Shared_Util_Cast.castInt'];
         /** @type {TeqFw_Core_Shared_Util_Cast.castString|function} */
         const castString = spec['TeqFw_Core_Shared_Util_Cast.castString'];
+        /** @type {typeof Gtm_Mob_Front_Enum_Task_Status} */
+        const STATUS = spec['Gtm_Mob_Front_Enum_Task_Status$'];
 
         /**
          * @param {Gtm_Mob_Front_IDb_Store_Task.Dto} [data]
@@ -105,6 +112,7 @@ export default class Gtm_Mob_Front_IDb_Store_Task {
             res.graveyardBid = castInt(data?.graveyardBid);
             res.id = castInt(data?.id);
             res.image = castString(data?.image);
+            res.status = castEnum(data?.status, STATUS);
             res.title = castString(data?.title);
             return res;
         }

@@ -26,6 +26,9 @@
           "title": "Task title"
         },
         "title": "Add new task"
+      },
+      "del": {
+        "title": "Delete this task?"
       }
     },
     "home": {

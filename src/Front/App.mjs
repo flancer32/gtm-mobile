@@ -48,11 +48,6 @@ export default class Gtm_Mob_Front_App {
         const esbAuthenticated = spec['TeqFw_Web_Shared_Event_Back_Stream_Reverse_Authenticated$'];
         /** @type {TeqFw_Web_Shared_Event_Back_Stream_Reverse_Failed} */
         const esbFailed = spec['TeqFw_Web_Shared_Event_Back_Stream_Reverse_Failed$'];
-        /** @type {Gtm_Mob_Front_Mod_Log_Monitor} */
-        // const modLogMonitor = spec['Gtm_Mob_Front_Mod_Log_Monitor$'];
-        /** @type {Gtm_Mob_Front_Widget_App} */
-        // const uiApp = spec['Gtm_Mob_Front_Widget_App$'];
-
 
         // VARS
         let _isInitialized = false; // application is initialized and can be mounted
@@ -152,7 +147,7 @@ export default class Gtm_Mob_Front_App {
                 });
                 router.addRoute({
                     path: DEF.ROUTE_HOME,
-                    component: () => container.get('Gtm_Mob_Front_Ui_Home_Route$'),
+                    component: () => container.get('Gtm_Mob_Front_Ui_Home$'),
                 });
 
                 app.use(router);

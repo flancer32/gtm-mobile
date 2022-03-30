@@ -1,5 +1,5 @@
 /**
- * Message input widget.
+ * UI component for dialog to add new task.
  *
  * @namespace Gtm_Mob_Front_Ui_Home_Dialog_Task_Add
  */
@@ -26,8 +26,10 @@ export default function (spec) {
     const DEF = spec['Gtm_Mob_Front_Defaults$'];
     /** @type {TeqFw_Core_Shared_Api_ILogger} */
     const logger = spec['TeqFw_Core_Shared_Api_ILogger$$']; // instance
+    /** @type {Gtm_Mob_Front_Widget_Home} */
+    const wgHome = spec['Gtm_Mob_Front_Widget_Home$'];
     /** @type {Gtm_Mob_Front_Widget_Home_Dialog_Task_Add} */
-    const wgDialogTaskView = spec['Gtm_Mob_Front_Widget_Home_Dialog_Task_Add$'];
+    const wgDialogTaskAdd = spec['Gtm_Mob_Front_Widget_Home_Dialog_Task_Add$'];
     /** @type {TeqFw_Core_Shared_Util_Date.addDays|function} */
     const addDays = spec['TeqFw_Core_Shared_Util_Date.addDays'];
     /** @type {TeqFw_Core_Shared_Util_Format.date|function} */
@@ -35,12 +37,13 @@ export default function (spec) {
     /** @type {TeqFw_Core_Shared_Util_Cast.castDate|function} */
     const castDate = spec['TeqFw_Core_Shared_Util_Cast.castDate'];
     /** @type {TeqFw_Web_Front_App_Store_IDB} */
-    const idb = spec['Gtm_Mob_Front_IDb_Main$']; // create singleton of IDB
+    const idb = spec['Gtm_Mob_Front_IDb_Main$']; // get as singleton, type as interface
     /** @type {Gtm_Mob_Front_IDb_Store_Task} */
     const idbTask = spec['Gtm_Mob_Front_IDb_Store_Task$'];
     /** @type {Gtm_Mob_Front_IDb_Store_Graveyard} */
     const idbGraveyard = spec['Gtm_Mob_Front_IDb_Store_Graveyard$'];
-
+    /** @type {typeof Gtm_Mob_Front_Enum_Task_Status} */
+    const STATUS = spec['Gtm_Mob_Front_Enum_Task_Status$'];
 
     // VARS
     const template = `
@@ -154,11 +157,13 @@ export default function (spec) {
                 dto.dateDue = castDate(this.fldDateDue);
                 dto.desc = this.fldDesc;
                 dto.graveyardBid = this.fldGraveyard.value;
+                dto.status = STATUS.NEW;
                 dto.title = this.fldTitle;
                 const taskId = await idb.create(trx, idbTask, dto);
                 logger.info(`New task is added to IDB as #${taskId}.`);
                 trx.commit();
                 this.display = false;
+                wgHome.get().loadTasks();
             },
         },
         async mounted() {
@@ -175,7 +180,7 @@ export default function (spec) {
             }
 
             // MAIN
-            wgDialogTaskView.set(this);
+            wgDialogTaskAdd.set(this);
             this.optsGraveyard = await getOtsGraveyard();
         },
     };
