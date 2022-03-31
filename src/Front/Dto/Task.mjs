@@ -34,6 +34,11 @@ class Dto {
     desc;
     /** @type {number} */
     id;
+    /**
+     * Base64 encoded image.
+     * @type {string}
+     */
+    image;
     /** @type {Gtm_Mob_Front_Enum_Task_Status} */
     status;
     /** @type {string} */
@@ -69,6 +74,7 @@ export default class Gtm_Mob_Front_Dto_Task {
             res.dateDue = castDate(data?.dateDue);
             res.desc = castString(data?.desc);
             res.id = castInt(data?.id);
+            res.image = castString(data?.image);
             res.status = castEnum(data?.status, STATUS);
             res.title = castString(data?.title);
             return res;

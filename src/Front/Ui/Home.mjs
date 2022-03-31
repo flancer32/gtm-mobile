@@ -78,7 +78,7 @@ export default function (spec) {
                 wg.displayDialog();
             },
             async loadTasks() {
-                this.tasks = [];
+                const loaded = [];
                 const trx = await idb.startTransaction([idbTask, idbGraveyard], false);
                 /** @type {Gtm_Mob_Front_IDb_Store_Task.Dto[]} */
                 const tasks = await idb.readSet(trx, idbTask);
@@ -90,10 +90,12 @@ export default function (spec) {
                     dto.dateDue = task.dateDue;
                     dto.desc = task.desc;
                     dto.id = task.id;
+                    dto.image = task.image;
                     dto.status = task.status;
                     dto.title = task.title;
-                    this.tasks.push(dto);
+                    loaded.push(dto);
                 }
+                this.tasks = loaded.reverse();
                 trx.commit();
             }
         },

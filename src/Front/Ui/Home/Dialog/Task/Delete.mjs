@@ -86,8 +86,12 @@ export default function (spec) {
                 display: false,
                 /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
                 item: null,
-                url: './img/placeholder.png',
             };
+        },
+        computed: {
+            url() {
+                return this?.item?.image ?? './img/placeholder.png';
+            },
         },
         methods: {
             /**

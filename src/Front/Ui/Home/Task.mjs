@@ -72,9 +72,7 @@ export default function (spec) {
         template,
         components: {},
         data() {
-            return {
-                url: './img/placeholder.png',
-            };
+            return {            };
         },
         props: {
             /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
@@ -90,7 +88,10 @@ export default function (spec) {
                 const bg = (task.status === STATUS.NEW) ? 'bg-primary' :
                     (task.status === STATUS.POSTED) ? 'bg-secondary' : 'bg-info';
                 return `${bg} text-white`;
-            }
+            },
+            url() {
+                return this?.item?.image ?? './img/placeholder.png';
+            },
         },
         methods: {
             btnDelete() {

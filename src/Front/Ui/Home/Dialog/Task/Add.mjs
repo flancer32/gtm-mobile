@@ -95,12 +95,17 @@ export default function (spec) {
                     class="q-pa-xs"
                     spinner-color="white"
                     style="max-height: 140px; max-width: 100%"
-            />
-            <!--<q-uploader-->
-            <!--url="http://localhost:4444/upload"-->
-            <!--style="max-width: 250px"-->
-            <!--/>-->
-            <!--<input type="file" id="pictureTest">-->
+                    v-on:click="imageClick"
+            >
+                <input type="file" tabindex="-1" hidden v-on:change="uploadChanged">
+            </q-img>
+            
+            
+            
+<!--            <q-uploader-->
+<!--            url="http://localhost:4444/upload"-->
+<!--            style="max-width: 250px"-->
+<!--            />-->
 
             <q-input v-model="fldDesc"
                      class="q-pa-xs"
@@ -135,17 +140,23 @@ export default function (spec) {
         components: {},
         data() {
             return {
+                bufUpload: null,
                 display: false,
                 fldDateDue: formatDate(addDays(7)),
                 fldDesc: null,
                 fldGraveyard: null,
                 fldTitle: null,
                 optsGraveyard: [],
-                url: './img/placeholder.png',
             };
+        },
+        computed: {
+            url() {
+                return this.bufUpload ?? './img/placeholder.png';
+            },
         },
         methods: {
             displayDialog() {
+                this.reset();
                 this.display = true;
             },
             /**
@@ -159,6 +170,7 @@ export default function (spec) {
                 dto.dateDue = castDate(this.fldDateDue);
                 dto.desc = this.fldDesc;
                 dto.graveyardBid = this.fldGraveyard.value;
+                dto.image = this.bufUpload;
                 dto.status = STATUS.NEW;
                 dto.title = this.fldTitle;
                 dto.uuid = uuidV4();
@@ -168,6 +180,29 @@ export default function (spec) {
                 this.display = false;
                 wgHome.get().loadTasks();
             },
+            async imageClick(e) {
+                const elUpload = e.currentTarget.querySelector('input[type=file]');
+                if (elUpload) {
+                    elUpload.click();
+                    // elUpload.dispatchEvent(new Event('click'));
+                }
+            },
+            reset() {
+                this.bufUpload = null;
+                this.fldDateDue = formatDate(addDays(7));
+                this.fldDesc = null;
+                this.fldGraveyard = null;
+                this.fldTitle = null;
+            },
+            async uploadChanged(e) {
+                const wg = this;
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (e) {
+                    wg.bufUpload = e.target.result;
+                }
+            }
         },
         async mounted() {
             // FUNCS
