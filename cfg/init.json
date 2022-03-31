@@ -9,7 +9,8 @@
         "user": "..."
       }
     },
-    "logsMonitor": "logs.local.teqfw.com"
+    "logsMonitor": "logs.local.teqfw.com",
+    "uploadRoot": "/absolute/path/to/uploads/store|./or/relative/to/project/root"
   },
   "@teqfw/core": {
     "devMode": false

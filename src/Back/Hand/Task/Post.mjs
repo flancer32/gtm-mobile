@@ -26,6 +26,8 @@ export default class Gtm_Mob_Back_Hand_Task_Post {
         const esbPost = spec['Gtm_Mob_Shared_Event_Back_Task_Post_Response$'];
         /** @type {typeof Gtm_Base_Shared_Enum_Task_Status} */
         const STATUS = spec['Gtm_Base_Shared_Enum_Task_Status$'];
+        /** @type {Gtm_Base_Back_Act_Upload_Save.act|function} */
+        const actSave = spec['Gtm_Base_Back_Act_Upload_Save$'];
 
         // VARS
         const A_TASK = rdbTask.getAttributes();
@@ -65,8 +67,10 @@ export default class Gtm_Mob_Back_Hand_Task_Post {
                 dto.date_due = castDate(data?.dateDue);
                 dto.desc = data?.desc;
                 dto.graveyard_ref = data?.graveyardBid;
-                // dto.image = data?.image;
-                dto.image = 'N/A';
+                if(data?.image) {
+                    const {id} = await actSave({trx, base64: data?.image});
+                    dto.image_ref = id;
+                }
                 dto.status = STATUS.NEW;
                 dto.title = data?.title;
                 dto.uuid = data?.uuid;

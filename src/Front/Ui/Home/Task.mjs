@@ -80,7 +80,7 @@ export default function (spec) {
         },
         computed: {
             btnPostEnabled() {
-                return (this?.item?.status === STATUS.NEW);
+                return (this?.item?.status === STATUS.NEW) || true;
             },
             classTitle() {
                 /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
