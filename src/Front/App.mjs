@@ -180,7 +180,7 @@ export default class Gtm_Mob_Front_App {
             // other initialization
             // logger.pause(false);
             // if (await modAlive.check()) {
-            await config.init({}); // this app has no separate 'doors' (entry points)
+            await config.init(); // this app has no separate 'doors' (entry points)
             print(`Application config is loaded.`);
             await initI18n(_root);
             print(`i18n resources are loaded.`);
