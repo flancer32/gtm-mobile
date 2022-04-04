@@ -89,7 +89,7 @@ export default function (spec) {
                 /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
                 const task = this.item;
                 const bg = (task.status === STATUS.NEW) ? 'bg-primary' :
-                    (task.status === STATUS.POSTED) ? 'bg-secondary' : 'bg-info';
+                    (task.status === STATUS.POSTED) ? 'bg-deep-purple-6' : 'bg-info';
                 return `${bg} text-white`;
             },
             url() {
