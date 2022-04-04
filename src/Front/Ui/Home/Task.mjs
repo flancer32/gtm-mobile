@@ -52,7 +52,7 @@ export default function (spec) {
             <div v-if="btnPostEnabled">
                 <q-btn color="primary" icon="send" v-on:click="btnPost" />
             </div>
-            <div class="q-mt-md">
+            <div class="q-mt-md" v-if="btnDeleteEnabled">
                 <q-btn color="primary" icon="delete" v-on:click="btnDelete" />
             </div>
         </div>
@@ -79,8 +79,11 @@ export default function (spec) {
             item: null,
         },
         computed: {
+            btnDeleteEnabled() {
+                return (this?.item?.status === STATUS.NEW);
+            },
             btnPostEnabled() {
-                return (this?.item?.status === STATUS.NEW) || true;
+                return (this?.item?.status === STATUS.NEW);
             },
             classTitle() {
                 /** @type {Gtm_Mob_Front_Dto_Task.Dto} */
