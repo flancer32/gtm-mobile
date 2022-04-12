@@ -13,10 +13,10 @@
             // local printout DIV
             const elLaunchpad = document.querySelector('.launchpad');
             // see `node_modules/@teqfw/web/web/js/loader.mjs`
-            const mod = await import('./web/@teqfw/web/js/loader.mjs');
+            const {Bootstrap} = await import('./web/@teqfw/web/js/loader.mjs');
             // create & init bootstrap object
             /** @type {Bootstrap} */
-            const boot = new mod.Bootstrap();
+            const boot = new Bootstrap();
             boot.setCssMount('BODY > DIV');
             boot.setNsApp('Gtm_Mob_Front_App');
             // set printout to UI DIV & to console

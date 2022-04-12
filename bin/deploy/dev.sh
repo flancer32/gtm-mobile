@@ -48,6 +48,7 @@ processRepo "teqfw/test"
 processRepo "teqfw/ui-quasar"
 processRepo "teqfw/vue"
 processRepo "teqfw/web"
+processRepo "teqfw/web-api"
 
 echo ""
 echo "App deployment in 'dev' mode is done."

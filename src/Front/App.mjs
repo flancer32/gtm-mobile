@@ -38,8 +38,8 @@ export default class Gtm_Mob_Front_App {
         const layoutBase = spec['Gtm_Mob_Front_Layout_Base$'];
         /** @type {TeqFw_Web_Front_Mod_Config} */
         const config = spec['TeqFw_Web_Front_Mod_Config$'];
-        /** @type {TeqFw_Web_Front_Mod_App_Front_Identity} */
-        const frontIdentity = spec['TeqFw_Web_Front_Mod_App_Front_Identity$'];
+        /** @type {TeqFw_Web_Api_Front_Mod_App_Front_Identity} */
+        const frontIdentity = spec['TeqFw_Web_Api_Front_Mod_App_Front_Identity$'];
         /** @type {TeqFw_Web_Front_App_Connect_Event_Reverse} */
         const streamBf = spec['TeqFw_Web_Front_App_Connect_Event_Reverse$'];
         /** @type {TeqFw_Web_Front_App_Event_Bus} */
